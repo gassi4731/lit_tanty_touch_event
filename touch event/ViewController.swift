@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerController, UINavigationControllerDelegate{
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    @IBOutlet var haikeiImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +23,17 @@ class ViewController: UIViewController, UIImagePickerController, UINavigationCon
         print("タッチした位置（\(location.x) , \(location.y))")
     }
     
-    var imagePickerController: UIImagePickerController =
-    UIImagePickerController()
+    @IBAction func selectBackground() {
+        let imagePickerController: UIImagePickerController = UIImagePickerController()
+        
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
     
-    imagePickerController.sourceType = UIImagePickerController.SourceType.PhotoLibrary
-    
-    imagePickerController.allowsEditing = true
-    
-    self.present(imagePickerController, animated: true, completion: nil)
-    
-    
-    imagePickerController.delegate = self
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediawithInfo into: [UIImagePickerController.InfoKey : Any]){
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
         
         haikeiImageView.image = image
@@ -42,8 +42,3 @@ class ViewController: UIViewController, UIImagePickerController, UINavigationCon
     }
     
 }
-
-
-
-}
-
