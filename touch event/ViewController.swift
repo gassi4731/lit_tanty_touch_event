@@ -7,9 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController  , UIImagePickerController,
-                      UINavigationControllerDelegate{
-
+class ViewController: UIViewController, UIImagePickerController, UINavigationControllerDelegate{
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,23 +20,20 @@ class ViewController: UIViewController  , UIImagePickerController,
         let location: CGPoint = touch.location(in: self.view)
         print("タッチした位置（\(location.x) , \(location.y))")
     }
-
+    
     var imagePickerController: UIImagePickerController =
     UIImagePickerController()
     
-    imagePickerController.sourceType =
-    UIImagePickerController.SourceType.PhotoLibrary
+    imagePickerController.sourceType = UIImagePickerController.SourceType.PhotoLibrary
     
     imagePickerController.allowsEditing = true
     
-    self.present(imagePickerController, animated:
-                    true, completion: nil)
+    self.present(imagePickerController, animated: true, completion: nil)
     
     
     imagePickerController.delegate = self
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediawithInfo into: [UIImagePickerController.InfoKey : Any]){
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediawithInfo into: [UIImagePickerController.InfoKey : Any]){
         let image = info[.originalImage] as? UIImage
         
         haikeiImageView.image = image
@@ -46,8 +42,8 @@ class ViewController: UIViewController  , UIImagePickerController,
     }
     
 }
-    
-    
-    
+
+
+
 }
 
